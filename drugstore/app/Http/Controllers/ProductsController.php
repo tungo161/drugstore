@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Symfony\Component\HttpFoundation\Session\Session;
+use Carbon\Carbon;
 use App\Models\Countrys;
 use App\Models\Imgs;
 use App\Models\Manufacturers;
@@ -104,11 +105,31 @@ class ProductsController extends Controller
     }
     public function create(){
         $manufaturers= Manufacturers::all();
+        
         return view('layouts.products.create',compact('manufaturers'));
     }
     public function store(Request $request){
-
-        Products::create($request->input());
+        $showimg=$request->file('showimg');
+        if($request->file('showimg') != ''){
+            $path='product_img';
+            $file_name=$showimg->getClientOriginalName();
+            $showimg->storeAs('',$showimg->getClientOriginalName(),'productimg');
+        }
+        else{
+            $file_name='';
+        }
+        DB::table('products')->insert([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'benefit' => $request->input('benefit'),
+            'price' => $request->input('price'),
+            'quantity' => $request->input('quantity'),
+            'path'=>'product_img',
+            'file_name'=>$file_name,
+            'manufacturers_id'=>$request->input('manufacturers_id'),
+            'created_at'=>Carbon::now(),
+            'updated_at'=>Carbon::now()
+        ]);
         return redirect('managerproduct');
     }
     

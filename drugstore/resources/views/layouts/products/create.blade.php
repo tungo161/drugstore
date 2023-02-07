@@ -41,8 +41,18 @@
                     </div>
                 
                 </div> 
-            </div>                
+            </div>  
+            <div class="pro-col d-flex align-items-center justify-content-center">
+                <div class="d-flex justify-content-center p-3">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text">Chọn ảnh hiển thị</label>
+                        <input type='file' class="form-control" name='showimg'>
+                    </div>
+                </div>                
+            </div>              
         </div>
+
+        
         
     </div>
     
