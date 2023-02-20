@@ -32,8 +32,7 @@
                             <div class="col-md-12"><label class="labels">Địa chỉ</label><input name="address" type="text" class="form-control" placeholder="enter address line 1" value="{{ $user->address }}"></div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-6"><p >Số dư tài khoản @money($user->account) VNĐ</p></div>
-                            <div class="col-md-6"><a class="btn btn-success">Nạp tiền tài khoản</a></div>
+                            <div class="col-md-6"><p >Số tiền đã tiêu @money($user->account) VNĐ</p></div>
                         </div>
                         <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Cập nhật tài khoản</button></div>
                     </div>

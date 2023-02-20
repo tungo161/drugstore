@@ -9,7 +9,7 @@ class Products extends Model
 {
     use \Znck\Eloquent\Traits\BelongsToThrough;
     use HasFactory;
-    protected $fillable = ['name', 'price','updated_at','benefit','quantity','description','manufacturers_id','path','file_name'];
+    protected $fillable = ['name', 'price','updated_at','benefit','quantity','description','manufacturers_id','path','file_name','role'];
     public function imgs()
     {
         return $this->hasMany(Imgs::class,'products_id');
@@ -21,5 +21,11 @@ class Products extends Model
     public function countrys()
     {
         return $this->belongsToThrough(Countrys::class, Manufacturers::class,'id','',[Countrys::class=>'countrys_id']);
+    }
+    public function orderproducts(){
+        return $this->hasMany(OrderProducts::class,'products_id');
+    }
+    public function producttypes(){
+        return $this->belongsTo(ProductType::class,'role');
     }
 }

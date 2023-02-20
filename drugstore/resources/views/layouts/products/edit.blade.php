@@ -43,6 +43,12 @@
                             <option value="{{ $manufaturer->id }}"> {{ $manufaturer->name }}</option>
                             @endforeach
                         </select>
+                    <label class="input-group-text" for="role_id">Loại sản phẩm:</label>
+                        <select class="form-select mb-3" aria-label="Default select example" name="role" id="role_id">
+                            @foreach ($ProductTypes as $ProductType)
+                            <option value="{{ $ProductType->id }}"> {{ $ProductType->name }}</option>
+                            @endforeach
+                        </select>
 
                         <div class="input-group mb-3">
                             <label class="input-group-text">Chọn ảnh hiển thị</label>
@@ -65,7 +71,7 @@
         <div class="pro-col">
             <div class="pro-col-content">
                 @if (count($products->imgs) < 6 )     
-                <input class="btn btn-primary" type="file" name="productimg">
+                <input class="btn btn-primary" type="file" name="productimg[]" multiple>
                 @else
                 <p class="btn btn-danger">Đã đủ file</p>
                 @endif
@@ -80,7 +86,7 @@
                                 <div class="d-flex justify-content-center">
                                     <a class="btn btn-danger" href="{{ url('delete').'/'.$productarray['id'] }}">Delete</a>
                                 </div>
-                               
+
                             </div>
                         </div>
                         @endforeach
@@ -121,6 +127,9 @@
     function myFunction() {
       document.getElementById("task-textarea").value ={{ $products->description}} ;
     }
+</script>
+
+
 </script>
 @endsection
 @include('layouts.apps._footer')

@@ -12,14 +12,32 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator as PaginationPaginator;
 
+/**
+  * Gera a paginação dos itens de um array ou collection.
+  *
+  * @param array|Collection      $items
+  * @param int   $perPage
+  * @param int  $page
+  * @param array $options
+  *
+  * @return LengthAwarePaginator
+  */
 class CartController extends Controller
 {
-    public function paycart(Request $request,User $user)
-    {   
-        $money=session()->get('moneys');
-        dd(session()->get('cart'),$money);
+
+    public function paginate($items, $perPage = 15, $page = null, $options = [])
+    {
+        $page = $page ?: (PaginationPaginator::resolveCurrentPage() ?: 1);
+
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
     public function viewpaychoose()
@@ -44,7 +62,13 @@ class CartController extends Controller
 
 
         $order->save();
+    
+        
 
+        
+        foreach (session()->get('cart') as $ids=>$product){
+        DB::insert('insert into orderproducts (orders_id, products_id,quantity_of_product) values (?, ?, ?)', [$order->id, $ids, $product['quantity'] ]);
+        }
         if($request->input('ordertypes_id')==1){
             User::where('id', $user->id)->decrement('account', $order->price);
         }
@@ -58,7 +82,15 @@ class CartController extends Controller
     public function managerorder(){
 
         $orders= Orders::with('user')->get();
-
+        $orders=orders::paginate(20);
         return view('layouts.order.manager',compact('orders'));
+    }
+
+    public function viewInformationOrder(Orders $orders)
+    {
+        $OrderWithRelationship=$orders::with('user','productInOrder','Products')->where('id', '=', $orders->id)->get();
+        
+        return view('layouts.order.viewInformation',compact('OrderWithRelationship'));
+
     }
 }

@@ -10,12 +10,37 @@ use App\Models\Imgs;
 use App\Models\Manufacturers;
 use App\Models\ProductImg;
 use App\Models\Products;
+use App\Models\ProductType;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator as PaginationPaginator;
+
+/**
+  * Gera a paginação dos itens de um array ou collection.
+  *
+  * @param array|Collection      $items
+  * @param int   $perPage
+  * @param int  $page
+  * @param array $options
+  *
+  * @return LengthAwarePaginator
+  */
+
 class ProductsController extends Controller
 {
+    public function paginate($items, $perPage = 15, $page = null, $options = [])
+    {
+        $page = $page ?: (PaginationPaginator::resolveCurrentPage() ?: 1);
+
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
+
     protected function getSessionData(Products $products){
         return [
             'name' => $products->name,
@@ -31,16 +56,23 @@ class ProductsController extends Controller
         
     }
 
-    public function index(){
-        //$products=Products::with('imgs','manufacturers')->get()->paginate(9);
-        $countrys=Countrys::with('proimg','products','manufacturers')->get();
-        collect($countrys)->paginate(5);
-        $products=Products::paginate(9);
+    public function index(Request $request){
+        $productTypes= ProductType::all();
+
+        $search= $request->input('search') ?? "";
+        if($search =="" and $request->input('role')==0){
+            /* $products=Products::orderBy('quantity','DESC')->paginate(9); */
+            $products=Products::paginate(9);
+
+        }
+        else{
+            $products=Products::where('name','LIKE',"%$search%")->get()->paginate(9);
+        }
         $cart= Cart::content();
         
         
         
-        return view('layouts.products.index',compact('products'));
+        return view('layouts.products.index',compact('products','search','productTypes'));
     }
 
     public function cart(){
@@ -65,7 +97,7 @@ class ProductsController extends Controller
         return $this->setSessionAndReturn($cart);
 
     }
-    public function removecart($id){
+    public function RemoveCart($id){
         $cart=session()->get('cart');
         if(isset($cart[$id])){
             unset($cart[$id]);
@@ -75,7 +107,7 @@ class ProductsController extends Controller
 
     }
 
-    public function changequantitycart(Request $request,Products $products){
+    public function ChangeQuantityCart(Request $request,Products $products){
         $cart=session()->get('cart');
         if($request->change_to==='down'){
             if(isset($cart[$products->id])){
@@ -97,23 +129,24 @@ class ProductsController extends Controller
         }
     }
 
-    public function manaproduct(){
-        $products= new Products();
-        $products= $products::paginate(10);
+    public function ManagerProduct(){
+        $products= Products::with('orderproducts','producttypes')->get()->paginate(10);
+
 
         return view('layouts.products.manager',compact('products'));
     }
     public function create(){
         $manufaturers= Manufacturers::all();
+        $ProductTypes= ProductType::all();
         
-        return view('layouts.products.create',compact('manufaturers'));
+        return view('layouts.products.create',compact('manufaturers','ProductTypes'));
     }
     public function store(Request $request){
-        $showimg=$request->file('showimg');
+        $ImgForShowing=$request->file('showimg');
         if($request->file('showimg') != ''){
             $path='product_img';
-            $file_name=$showimg->getClientOriginalName();
-            $showimg->storeAs('',$showimg->getClientOriginalName(),'productimg');
+            $file_name=$ImgForShowing->getClientOriginalName();
+            $ImgForShowing->storeAs('',$ImgForShowing->getClientOriginalName(),'productimg');
         }
         else{
             $file_name='';
@@ -127,6 +160,7 @@ class ProductsController extends Controller
             'path'=>'product_img',
             'file_name'=>$file_name,
             'manufacturers_id'=>$request->input('manufacturers_id'),
+            'role'=>$request->input('role'),
             'created_at'=>Carbon::now(),
             'updated_at'=>Carbon::now()
         ]);
@@ -136,19 +170,18 @@ class ProductsController extends Controller
 
     public function edit(Products $products){
         $countrys=Countrys::all();
-        
+        $ProductTypes= ProductType::all();
         $manufaturers= Manufacturers::all();
 
-        return view('layouts.products.edit',compact('products','manufaturers'));
+        return view('layouts.products.edit',compact('products','manufaturers','ProductTypes'));
         
     }
 
     public function update(Request $request, Products $products){
-        $imgs=new Imgs;
-        $manufaturers= Manufacturers::all();
-        $productimg= $request->file('productimg');
         
-        $showimg=$request->file('showimg');
+
+       
+        $ImgForShowing=$request->file('showimg');
         
         
         $data=[
@@ -159,22 +192,27 @@ class ProductsController extends Controller
             'benefit'=>$request->input('benefit'),
             'quantity'=>$request->input('quantity'),
             'manufacturers_id'=>$request->input('manufacturers_id'),
+            'role'=>$request->input('role')
 
 
         ];
         if($request->file('showimg') != ''){
             $products->path='product_img';
-            $products->file_name=$showimg->getClientOriginalName();
+            $products->file_name=$ImgForShowing->getClientOriginalName();
             $products->save();
-            $showimg->storeAs('',$showimg->getClientOriginalName(),'productimg');
+            $ImgForShowing->storeAs('',$ImgForShowing->getClientOriginalName(),'productimg');
         }
+        
 
-        if($request->file('productimg') != ''){
-            $imgs->path='product_img';
-            $imgs->file_name=$productimg->getClientOriginalName();
-            $imgs->products_id=$products->id;
-            $imgs->save();
-            $productimg->storeAs('',$productimg->getClientOriginalName(),'productimg');
+        if($ProductImgs= $request->file('productimg')){
+            foreach($ProductImgs as $ProductImg){
+                $imgs=new Imgs;
+                $imgs->path='product_img';
+                $imgs->file_name=$ProductImg->getClientOriginalName();
+                $imgs->products_id=$products->id;
+                $imgs->save();
+                $ProductImg->storeAs('',$ProductImg->getClientOriginalName(),'productimg');
+            }
         }
         
         $products->update($data);
@@ -191,11 +229,8 @@ class ProductsController extends Controller
 
     public function productprofile(Products $products){
 
-        $productss=$products::with('imgs','countrys','manufacturers')->where('id', '=', $products->id)->get();
-
-        
-        
-        return view('layouts.products.proprofile',compact('productss'));
+        $ProductWithRelationship=$products::with('imgs','countrys','manufacturers')->where('id', '=', $products->id)->get();  
+        return view('layouts.products.proprofile',compact('ProductWithRelationship'));
     }
 
     

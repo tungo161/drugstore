@@ -1,6 +1,6 @@
 @include('layouts.apps._header')
 @php $total=0; 
-    $totalpro=0;
+    $TotalProduct=0;
 @endphp
 <div class="container-fluid p-2">
     <div class="row">
@@ -21,7 +21,7 @@
                             @if(session('cart'))
                                 @foreach (session('cart') as $id => $products)
                                 @php
-                                    $totalpro+=$products['quantity'];
+                                    $TotalProduct+=$products['quantity'];
                                     $sub_total= $products['price']* $products['quantity'];
                                     $total+=$sub_total
                                 @endphp
@@ -67,7 +67,7 @@
                 <div class="card-body">
                     <dl class="dlist-align">
                         <dt>Tổng số sản phẩm:</dt>
-                        <dd class="text-right ml-3">{{ $totalpro }}</dd>
+                        <dd class="text-right ml-3">{{ $TotalProduct }}</dd>
                     </dl>
                     <dl class="dlist-align">
                         <dt>Tổng tiền:</dt>
@@ -78,7 +78,11 @@
 
                         <input type="hidden" name="total_pay" value="$total">
                     </dl>
-                    <hr> <a href="{{ route('viewpaychoose') }}" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Xác nhận thanh toán</a>
+                    @if($TotalProduct == 0)
+                        <hr><a class="btn btn-out btn-danger btn-square btn-main" data-abc="true" style="cursor:context-menu "> Xác nhận thanh toán</a>
+                    @else
+                        <hr><a href="{{ route('viewpaychoose') }}" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Xác nhận thanh toán</a>
+                    @endif
                     <hr><a href="{{ url('products') }}" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Tiếp tục mua</a>
                 </div>
             </div>

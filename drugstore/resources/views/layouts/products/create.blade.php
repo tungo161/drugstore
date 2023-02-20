@@ -38,6 +38,13 @@
                             <option value="{{ $manufaturer->id }}"> {{ $manufaturer->name }}</option>
                             @endforeach
                         </select>
+
+                        <label class="input-group-text" for="role_id">Loại sản phẩm:</label>
+                        <select class="form-select" aria-label="Default select example" name="role" id="role_id">
+                            @foreach ($ProductTypes as $ProductType)
+                            <option value="{{ $ProductType->id }}"> {{ $ProductType->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 
                 </div> 

@@ -1,11 +1,11 @@
 
 @include('layouts.apps._header')
 @php $total=0; 
-    $totalpro=0;
+    $TotalProduct=0;
 @endphp
 
 <h3 class="text-center p-1">Xác nhận thanh toán</h3>
-<form class="form-edit" method="POST" action="{{ route("addpaychoose") }}" enctype='multipart/form-data'>
+<form class="form-edit" method="POST" action="{{ route("processTransaction") }}" enctype='multipart/form-data'>
     @csrf
 
     <div class="container-fluid p-2">
@@ -28,7 +28,7 @@
                         @if(session('cart'))
                             @foreach (session('cart') as $id => $products)
                             @php
-                                $totalpro+=$products['quantity'];
+                                $TotalProduct+=$products['quantity'];
                                 $sub_total= $products['price']* $products['quantity'];
                                 $total+=$sub_total
                             @endphp
@@ -42,12 +42,16 @@
                             </tr>
                             @endforeach
                             <td></td>
-                            <td>Tổng số sản phẩm: {{ $totalpro }}</td>
+                            <td>Tổng số sản phẩm: {{ $TotalProduct }}</td>
                             <td></td>
                             <td>Tổng tiền: @money($total) VNĐ</td>
                         @endif
                         
-                        
+                        @php
+                            $vn_to_usd= $total*0.000042;
+                            $total_paypal=round($vn_to_usd,2);
+                            \Session::put('total_paypal',$total_paypal);
+                        @endphp
                     </tbody>
                 </table>
             </aside>
@@ -88,18 +92,12 @@
                     </div>
 
                     <div class="mb-3">
-                        @if( $total < $user->account )
+
                         <select name="ordertypes_id" id="cars">
-                        <option value="1">Thanh toán bằng tài khoản</option>
-                        <option value="2">Thanh toán bằng tiền mặt</option>
+                            <option value="1">Thanh toán bằng tài khoản</option>
+                            <option value="2">Thanh toán bằng tiền mặt</option>
                         </select>
 
-                        @else
-                        <select name="ordertypes_id" id="cars">
-                            <option value="2">Thanh toán bằng tiền mặt</option>
-                            </select>
-                        <p class="text-danger">Tài khoản bạn không đủ để thanh toán bằng tài khoản</p>
-                        @endif
                     </div>
             </aside>
     
@@ -107,8 +105,16 @@
     </div>
     <div class="d-flex justify-content-center">
         <a  href="{{ url('cart') }}" class="btn btn-danger m-1">Xem lại giỏ hàng</a>
-        <button type="submit" class="btn btn-success m-1">Thanh toán</button>
-
+        <button class="btn btn-success m-1" onclick="location.href='{{ route('processTransaction') }}'" >Thanh toán</button>
+        
+        @if(\Session::has('error'))
+            <div class="alert alert-danger">{{ \Session::get('error') }}</div>
+            {{ \Session::forget('error') }}
+        @endif
+        @if(\Session::has('success'))
+            <div class="alert alert-success">{{ \Session::get('success') }}</div>
+            {{ \Session::forget('success') }}
+        @endif
     </div>
 </form>
 
@@ -119,8 +125,16 @@
         .catch( error => {
             console.error( error );
         } );
+        function myFunction() {
+        alert("Hello! I am an alert box!");
+        }
 </script>
 
+<script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
+
 @endsection
+
+
+
 
 @include('layouts.apps._footer')

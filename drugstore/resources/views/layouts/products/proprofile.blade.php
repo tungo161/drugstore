@@ -1,10 +1,10 @@
 @include('layouts.apps._header')
 <form class="form-edit" method="POST" action="{{ url("products") }}" enctype='multipart/form-data'>
     @csrf
-   
+
     
 
-    @foreach ($productss as $products )
+    @foreach ($ProductWithRelationship as $products )
 <div class="container pb-5">
     <div class="row">
         <div class="col-lg-5 mt-5">
@@ -38,15 +38,24 @@
                     <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                     </button>
+
                 </div>
-            
+            <div class="row pb-3">
+                            <div class="col d-grid">
+                                @if($products->quantity==0)
+                                <a  class="btn btn-danger btn-lg" value="addtocard">Hết hàng</a>
+                                @else
+                                <a type="submit" href="{{ route('addcart',[$products->id])}}" class="btn btn-success btn-lg" name="submit" value="addtocard">Thêm vào giỏ hàng</a>
+                                @endif
+                            </div>
+                        </div>
 
         </div>
         <!-- col end -->
         <div class="col-lg-7 mt-5">
             <div class="card">
                 <div class="card-body">
-                    @foreach ($productss as $products )
+                    @foreach ($ProductWithRelationship as $products )
 
                     
                     <h1 class="h2">{{ $products->name }}</h1>
@@ -68,15 +77,7 @@
                     <div>{!! $products->description !!}</div>
                     @endforeach
                             
-                        <div class="row pb-3">
-                            <div class="col d-grid">
-                                @if($products->quantity==0)
-                                <a  class="btn btn-danger btn-lg" value="addtocard">Hết hàng</a>
-                                @else
-                                <a type="submit" href="{{ route('addcart',[$products->id])}}" class="btn btn-success btn-lg" name="submit" value="addtocard">Thêm vào giỏ hàng</a>
-                                @endif
-                            </div>
-                        </div>
+                        
                     
 
                 </div>

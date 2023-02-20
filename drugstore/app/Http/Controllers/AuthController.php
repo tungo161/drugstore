@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterReQuest;
+use App\Models\OrderProducts;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -46,7 +48,7 @@ class AuthController extends Controller
         return redirect('login');
     } 
     
-    public function manauser(){
+    public function ManagerUser(){
         $users= new User();
 
         $users= $users::paginate(10);
@@ -78,4 +80,10 @@ class AuthController extends Controller
 
         return redirect('profileuser');
     }
+
+    /* public function ViewOrder(User $users){
+        $users= User::join('orders','orders.users_id','=', 'users.id')->join('orderproducts','orders.id','=', 'orderproducts.orders_id')->join('products','orderproducts.products_id','=', 'products.id')->get();
+
+        return view('layouts.order.viewInformation',compact('users'));
+    } */
 }

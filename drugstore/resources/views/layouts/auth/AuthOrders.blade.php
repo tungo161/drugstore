@@ -21,12 +21,11 @@
                 <th>Địa chỉ nhận hàng</th>
                 <th>Số điện thoại nhận hàng</th>
                 <th>Tổng tiền hàng</th>
-  
                 <th>Ghi chú</th>
-                <th>Ngày tạo</th>
-                <th>Xem thêm</th>
+                <th>created_at</th>
+                <th>updated_at</th>
 
-               
+
 
                 
             </tr>
@@ -43,16 +42,14 @@
 
 
                 <td>{{ $order->created_at }}</td>
-                <th><a class="btn btn-success" href='{{ url("managerorder/viewInformationOrder/{$order->id}") }}'>View</a></th>
+                <td>{{ $order->updated_at }}</td>
                 
             </tr>
             @endforeach
         </table>
         
     </div>
-    <div class="d-flex justify-content-center">
-        {!! $orders->onEachSide(1)->links() !!}
-    </div>
+ 
     
     <script type="text/javascript" src="js.js"></script>
 </body>

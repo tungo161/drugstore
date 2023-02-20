@@ -14,34 +14,26 @@
     @include('layouts.apps._header')
     <div class="container w-75 p-3">
         <div class="row">
-            {{--@foreach ($productss as $productsss)
-            @foreach ($productsss as $productssss )
-            <p>{{ $productssss->imgs}}</p>
-            @endforeach
-            
-            @endforeach--}}
-            
-            
-            
-            
-            
            
-            
-            {{--@foreach ($country->proimg as $proimg)
-            @endforeach
-                 <img src="{{ Storage::disk('productimg')->url($proimg->file_name) }}"> 
-                                     @if($proimg->products_id==$product->id)
-                    <div class="row">
-                        <img src="{{ Storage::disk('productimg')->url($proimg->file_name) }}">
-                    </div>
-                    
-                    @endif
-                        --}}
-        
- 
 
-{{--                         <a class="nav-link active" aria-current="page" href="#">Giỏ hàng ({{ Gloudemans\Shoppingcart\Facades\Cart::content()->count() }})</a>
- --}}                        @foreach ($products as $product)
+                        <form action="" class="d-flex justify-content-between">
+                            <div class="input-group w-50">
+                                <input type="search" class="form-control rounded w-25" name="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                <select class="form-select rounded w-25" aria-label="Default select example" name="role" id="role_id">
+                                    <option value="0">Tất cả sản phẩm</option>
+                                    @foreach ($productTypes as $productType)
+                                    <option value="{{ $productType->id }}"> {{ $productType->name }}</option>
+                                    @endforeach
+                                </select>
+                            
+                            </div>
+
+                            <div class="input-group w-25">
+                                <button type="submit" class="btn btn-outline-primary">search</button>
+                            </div>
+                        </form>
+                        
+                    @foreach ($products as $product)
                         <div class="col-md-4">
                             <div class="minipro card mb-4 product-wap rounded-0">
                                 <div class="card rounded-0">
@@ -101,6 +93,7 @@
         </div>
 
     </div>
+    
     <div class="d-flex justify-content-center">
         {!! $products->onEachSide(1)->links() !!}
     </div>

@@ -11,6 +11,9 @@
     
 </head>
 <body>
+    @php
+        $sum=0;   
+    @endphp
     <div class="container d-flex justify-content-center pt-3">
         <a class="btn btn-primary" href="{{ url('managerproduct/create')}}">Thêm mới sản phẩm</a>
     </div>
@@ -19,20 +22,34 @@
             <tr style="border:1px black solid">
                 <th>id</th>
                 <th>tên sản phẩm</th>
+                <th>loại sản phẩm</th>
                 <th>ảnh hiển thị</th>
                 <th>giá</th>
+                <th>Số lượng đã bán</th>
                 <th>created_at</th>
                 <th>updated_at</th>
                 <th>Action 1</th>
                 <th>Action2</th>
                 
             </tr>
+            
             @foreach ($products as $product)
+            
             <tr style="border:1px black solid">
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
+                <td>{{ $product->producttypes->name}}</td>
                 <td><img class="card-img rounded-0 img-fluid" src="{{ Storage::disk('productimg')->url($product->file_name) }}" style="height: 150px; width:150px" ></td>
                 <td>{{ $product->price }}</td>
+                <td>
+                    @foreach ($product->orderproducts as $orderproduct)
+                    @php
+                        $sum+=$orderproduct->quantity;   
+                    @endphp
+                    
+                    @endforeach
+                    {{ $sum }}
+                </td>
                 <td>{{ $product->created_at }}</td>
                 <td>{{ $product->updated_at }}</td>
                 <td><a class="btn btn-primary" href='{{ url("managerproduct/{$product->id}/edit") }}'>Update</a></td>
@@ -44,6 +61,9 @@
                     </form>
                 </td>
             </tr>
+            @php
+                $sum=0;   
+            @endphp
             @endforeach
         </table>
         
