@@ -4,13 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterReQuest;
 use App\Models\OrderProducts;
+use App\Models\Orders;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator as PaginationPaginator;
+
+/**
+  * Gera a paginação dos itens de um array ou collection.
+  *
+  * @param array|Collection      $items
+  * @param int   $perPage
+  * @param int  $page
+  * @param array $options
+  *
+  * @return LengthAwarePaginator
+  */
 
 class AuthController extends Controller
 {
+    public function paginate($items, $perPage = 15, $page = null, $options = [])
+    {
+        $page = $page ?: (PaginationPaginator::resolveCurrentPage() ?: 1);
+
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    }
+    
     public function showRegisterForm(){
 
         return view('layouts.auth.register');
@@ -81,9 +105,15 @@ class AuthController extends Controller
         return redirect('profileuser');
     }
 
-    /* public function ViewOrder(User $users){
-        $users= User::join('orders','orders.users_id','=', 'users.id')->join('orderproducts','orders.id','=', 'orderproducts.orders_id')->join('products','orderproducts.products_id','=', 'products.id')->get();
+    public function ViewAuthOrder(User $users){
+        
+        $users= $users::with('order')->where('id', '=', $users->id)->get()->paginate(10);
 
-        return view('layouts.order.viewInformation',compact('users'));
-    } */
+        return view('layouts.auth.viewOrders',compact('users'));
+    }
+    public function viewInformationOrder(User $users,Orders $orders)
+    {
+        $OrderWithRelationship=$orders::with('user','productInOrder','Products')->where('id', '=', $orders->id)->get();
+        return view('layouts.auth.ViewInformationOrder',compact('OrderWithRelationship'));
+    }
 }

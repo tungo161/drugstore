@@ -81,13 +81,7 @@ a{
     justify-content: space-between;
 }
 
-.pro-col{
-    width: 47%;
-    border: 1px solid black;
-}
-.pro-col-content{
-    padding: 10px;
-}
+
 
 .col-md-4 img{
     
@@ -115,3 +109,4 @@ a{
 .minipro:hover{
     border: 1px solid black;
 }
+

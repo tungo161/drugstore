@@ -13,10 +13,7 @@
 <footer class="text-center text-lg-start text-muted bg-primary-subtle">
     <!-- Section: Social media -->
     <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-        <!-- Left -->
-        <div class="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
-        </div>
+
 
         </section>
 
@@ -28,11 +25,12 @@
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <!-- Content -->
                 <h6 class="text-uppercase fw-bold mb-4">
-                <i class="fas fa-gem me-3 text-secondary"></i>Company name
+                <i class="fas fa-gem me-3 text-secondary"></i>Thông tin
                 </h6>
                 <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit.
+                    © 2022. Công Ty Cổ Phần Dược ABC Pharma. Trụ sở chính: 111, Phú Thịnh, P.Bắc Cường, TP.Lào Cai. Địa chỉ liên hệ: Toà nhà XYZ, 
+                    Lô T1-6.1, Đường D1, Khu Công Nghệ Cao, P.Bắc Cường, TP.Lào Cai. Email: lienhe@nhathuocabc.com. 
+                    Chịu trách nhiệm nội dung: Ngô Ngọc Tú.
                 </p>
             </div>
             <!-- Grid column -->
@@ -41,19 +39,19 @@
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <!-- Links -->
                 <h6 class="text-uppercase fw-bold mb-4">
-                Products
+                    HỆ THỐNG THUỐC
                 </h6>
                 <p>
-                <a href="#!" class="text-reset">Angular</a>
+                <a href="#!" class="text-reset">Hệ thống nhà thuốc</a>
                 </p>
                 <p>
-                <a href="#!" class="text-reset">React</a>
+                <a href="#!" class="text-reset">Bệnh viện, bác sĩ</a>
                 </p>
                 <p>
-                <a href="#!" class="text-reset">Vue</a>
+                <a href="#!" class="text-reset">Chất lượng phục vụ</a>
                 </p>
                 <p>
-                <a href="#!" class="text-reset">Laravel</a>
+                <a href="#!" class="text-reset">Khuyến mãi khách hàng</a>
                 </p>
             </div>
             <!-- Grid column -->
@@ -62,19 +60,19 @@
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 <!-- Links -->
                 <h6 class="text-uppercase fw-bold mb-4">
-                Useful links
+                Mạng xã hội
                 </h6>
                 <p>
-                <a href="#!" class="text-reset">Pricing</a>
+                <a href="https://www.facebook.com/" class="text-reset">Facebook</a>
                 </p>
                 <p>
-                <a href="#!" class="text-reset">Settings</a>
+                <a href="https://vn.yahoo.com" class="text-reset">Yahoo</a>
                 </p>
                 <p>
-                <a href="#!" class="text-reset">Orders</a>
+                <a href="https://www.instagram.com/" class="text-reset">Instagram</a>
                 </p>
                 <p>
-                <a href="#!" class="text-reset">Help</a>
+                <a href="https://twitter.com/" class="text-reset">Twitter</a>
                 </p>
             </div>
             <!-- Grid column -->

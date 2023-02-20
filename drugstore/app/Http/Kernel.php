@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'TargetAccount'=> \App\Http\Middleware\TargetAccount::class,
         'LoginCartCheck'=> \App\Http\Middleware\LoginCartCheck::class,
         'LogoutCheck'=> \App\Http\Middleware\LogoutCheck::class,
         'LoginCheck'=> \App\Http\Middleware\LoginCheck::class,

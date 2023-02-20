@@ -29,58 +29,84 @@ class PayPalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function processTransaction(CartRequest $request)
     {
         $user = Auth::user();
         $total=session()->get('total_paypal');
-        session()->put('orderInfomation',
-        [
-                    'name'=>$request->input('name'),
-                    'id'=>$user->id,
-                    'moneys'=>session()->get('moneys'),
-                    'phone'=>$request->input('phone'),
-                    'note'=>$request->input('note'),
-                    'address'=>$request->input('address'),
-                    'ordertypes_id'=>$request->input('ordertypes_id')
-                ]);
-        $provider = new PayPalClient;
-        $provider->setApiCredentials(config('paypal'));
-        $paypalToken = $provider->getAccessToken();
-
-        $response = $provider->createOrder([
-            "intent" => "CAPTURE",
-            "application_context" => [
-                "return_url" => route('successTransaction'),
-                "cancel_url" => route('cancelTransaction'),
-            ],
-            "purchase_units" => [
-                0 => [
-                    "amount" => [
-                        "currency_code" => "USD",
-                        "value" => $total
-                    ]
-                ]
-            ]
-        ]);
-
-        if (isset($response['id']) && $response['id'] != null) {
-
-            // redirect to approve href
-            foreach ($response['links'] as $links) {
-                if ($links['rel'] == 'approve') {
-                    return redirect()->away($links['href']);
-                }
+        if($request->input('ordertypes_id')==2){
+            $order=new Orders();
+            $order->usernametake= $request->input('name');
+            $order->users_id= $user->id;
+            $order->price= session()->get('moneys');
+            $order->phonefortake= $request->input('phone');
+            $order->note= $request->input('note');
+            $order->addressfortake=$request->input('address');
+            $order->ordertypes_id= $request->input('ordertypes_id');
+            $order->save();
+        
+            foreach (session()->get('cart') as $ids=>$product){
+                DB::insert('insert into orderproducts (orders_id, products_id,quantity_of_product) values (?, ?, ?)', [$order->id, $ids, $product['quantity'] ]);
             }
 
-            return redirect()
-                ->route('viewpaychoose')
-                ->with('error', 'Something went wrong.');
-
-        } else {
-            return redirect()
-                ->route('viewpaychoose')
-                ->with('error', $response['message'] ?? 'Something went wrong.');
+            foreach (session('cart') as $id => $products){
+                Products::where('id', $id)->decrement('quantity', $products['quantity']);
+            }
+            session()->forget(['cart', 'moneys']);
+            return redirect('cart');
         }
+        else{
+            session()->put('orderInfomation',
+            [
+                        'name'=>$request->input('name'),
+                        'id'=>$user->id,
+                        'moneys'=>session()->get('moneys'),
+                        'phone'=>$request->input('phone'),
+                        'note'=>$request->input('note'),
+                        'address'=>$request->input('address'),
+                        'ordertypes_id'=>$request->input('ordertypes_id')
+                    ]);
+            $provider = new PayPalClient;
+            $provider->setApiCredentials(config('paypal'));
+            $paypalToken = $provider->getAccessToken();
+    
+            $response = $provider->createOrder([
+                "intent" => "CAPTURE",
+                "application_context" => [
+                    "return_url" => route('successTransaction'),
+                    "cancel_url" => route('cancelTransaction'),
+                ],
+                "purchase_units" => [
+                    0 => [
+                        "amount" => [
+                            "currency_code" => "USD",
+                            "value" => $total
+                        ]
+                    ]
+                ]
+            ]);
+    
+            if (isset($response['id']) && $response['id'] != null) {
+    
+                // redirect to approve href
+                foreach ($response['links'] as $links) {
+                    if ($links['rel'] == 'approve') {
+                        return redirect()->away($links['href']);
+                    }
+                }
+    
+                return redirect()
+                    ->route('viewpaychoose')
+                    ->with('error', 'Something went wrong.');
+    
+            } else {
+                return redirect()
+                    ->route('viewpaychoose')
+                    ->with('error', $response['message'] ?? 'Something went wrong.');
+            }
+        }
+        
     }
 
     /**

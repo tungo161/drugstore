@@ -43,9 +43,14 @@
             <div class="row pb-3">
                             <div class="col d-grid">
                                 @if($products->quantity==0)
-                                <a  class="btn btn-danger btn-lg" value="addtocard">Hết hàng</a>
+                                <a  class="btn btn-danger btn-lg" style="cursor:context-menu">Hết hàng</a>
                                 @else
-                                <a type="submit" href="{{ route('addcart',[$products->id])}}" class="btn btn-success btn-lg" name="submit" value="addtocard">Thêm vào giỏ hàng</a>
+                                @if(Auth::check())
+                                    @if(Auth::user()->role==1)
+                                        @else
+                                            <a type="submit" href="{{ route('addcart',[$products->id])}}" class="btn btn-success btn-lg" name="submit" value="addtocard">Thêm vào giỏ hàng</a>
+                                        @endif
+                                    @endif
                                 @endif
                             </div>
                         </div>
@@ -70,7 +75,7 @@
                         </li>
                     </ul>
 
-                    <h6>Đối tượng sử dụng: <span>{{ $products->prosuser }}</span></h6>
+
                     <h6>Công dụng: <span>{{ $products->benefit }}</span></h6>
                     <h6>Số lượng: <span>{{ $products->quantity }}</span></h6>
                     <h6>Công ty sản xuất: {{ $products->manufacturers->name }}</h6>

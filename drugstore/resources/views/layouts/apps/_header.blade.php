@@ -52,9 +52,10 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ url('products') }}">Sản phẩm</a>
                         </li>
+                        @if(Auth::check())
+                            @if(Auth::user()->role!=1)
+                            
                         <li class="nav-item">
-                            
-                            
                             
                             <a class="nav-link active" aria-current="page" href="{{ url('cart') }}">
                                 
@@ -68,7 +69,8 @@
                                 {{ $totalpro }}
                                 
                                 @endif<i class="bi bi-cart"></i> Giỏ hàng</a>
-                            
+                            @endif
+                        @endif 
     
                             
                         </li>

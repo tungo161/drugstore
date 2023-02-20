@@ -16,20 +16,20 @@
         <div class="row">
            
 
-                        <form action="" class="d-flex justify-content-between">
-                            <div class="input-group w-50">
-                                <input type="search" class="form-control rounded w-25" name="search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                <select class="form-select rounded w-25" aria-label="Default select example" name="role" id="role_id">
-                                    <option value="0">Tất cả sản phẩm</option>
+                        <form action="" class="d-flex justify-content-between bg-primary-subtle mb-1">
+                            <div class="input-group w-50 m-2">
+                                <input type="search" class="form-control  w-25" value="{{session('searching')[0]}}" name="search" placeholder="Tìm kiếm" aria-label="Search" aria-describedby="search-addon" />
+                                <select class="form-select w-25" aria-label="Default select example" name="role" id="role_id">
+                                    <option value="0"  @if(session('searching')[1] == 0) selected @endif>Tất cả sản phẩm</option>
                                     @foreach ($productTypes as $productType)
-                                    <option value="{{ $productType->id }}"> {{ $productType->name }}</option>
+                                    <option value="{{ $productType->id }}" @if(session('searching')[1] == $productType->id) selected @endif> {{ $productType->name }}</option>
                                     @endforeach
                                 </select>
                             
                             </div>
 
                             <div class="input-group w-25">
-                                <button type="submit" class="btn btn-outline-primary">search</button>
+                                <button type="submit" class="btn btn-outline-primary m-2">search</button>
                             </div>
                         </form>
                         
@@ -51,15 +51,20 @@
                                         ">Công dụng: {{ $product->benefit }}</div> </p>
                                     <p class="text-center mb-0">Giá: @money($product->price) VNĐ</p>
                                     <div class="">
-                                        
-                
+                                
+                                                    
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                            @if($product->quantity==0)
-                                            <div class="text-center"><span class="btn btn-danger">Hết hàng </span></div>
+                                           
+                                                @if(Auth::check())
+                                                    @if(Auth::user()->role==1)
 
-                                            @else
-                                            <div class="text-center"><a  href="{{ route('addcart',[$product->id])}}" class="btn btn-outline-dark mt-auto"  type="submit">Thêm giỏ hàng <i class="bi bi-cart-plus-fill"></i></a></div>
-
+                                                    @else
+                                                        @if($product->quantity==0)
+                                                            <div class="text-center"><span class="btn btn-danger" style="cursor:context-menu">Hết hàng </span></div>
+                                                        @else
+                                                            <div class="text-center"><a  href="{{ route('addcart',[$product->id])}}" class="btn btn-outline-dark mt-auto"  type="submit">Thêm giỏ hàng <i class="bi bi-cart-plus-fill"></i></a></div>
+                                                        @endif
+                                                @endif
                                             @endif
                                             <div class="text-center">Số lượng còn lại: {{ $product->quantity}} </div>
                                         </div>

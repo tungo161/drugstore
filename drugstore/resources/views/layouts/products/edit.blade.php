@@ -3,8 +3,8 @@
 <form class="form-edit" method="POST" action="{{ url("managerproduct/{$products->id}") }}" enctype='multipart/form-data'>
     @csrf
     @method('PUT')
-    <div class="pro-edit">
-        <div class="pro-col d-flex align-items-center justify-content-center">
+    <div class="row">
+        <div class="col-6 border d-flex align-items-center justify-content-center">
             <div class="d-flex justify-content-center p-3">
                 <div class="pro-col-content">
                     <div class="input-group mb-3">
@@ -40,13 +40,13 @@
                     <label class="input-group-text" for="manufaturer">Công ty sản xuất:</label>
                         <select class="form-select mb-3" aria-label="Default select example" name="manufacturers_id" id="manufaturer">
                             @foreach ($manufaturers as $manufaturer)
-                            <option value="{{ $manufaturer->id }}"> {{ $manufaturer->name }}</option>
+                            <option value="{{ $manufaturer->id }}" @if($products->manufacturers_id == $manufaturer->id) selected @endif> {{ $manufaturer->name }}</option>
                             @endforeach
                         </select>
                     <label class="input-group-text" for="role_id">Loại sản phẩm:</label>
                         <select class="form-select mb-3" aria-label="Default select example" name="role" id="role_id">
                             @foreach ($ProductTypes as $ProductType)
-                            <option value="{{ $ProductType->id }}"> {{ $ProductType->name }}</option>
+                            <option value="{{ $ProductType->id }}" @if($products->role == $ProductType->id) selected @endif> {{ $ProductType->name }}</option>
                             @endforeach
                         </select>
 
@@ -68,8 +68,8 @@
                 </div> 
             </div>  
     
-        <div class="pro-col">
-            <div class="pro-col-content">
+        <div class="col-6 border">
+            <div class="d-flex justify-content-center m-2">
                 @if (count($products->imgs) < 6 )     
                 <input class="btn btn-primary" type="file" name="productimg[]" multiple>
                 @else
@@ -104,7 +104,8 @@
     </div>
     
     <div class="container d-flex justify-content-center p-3">
-        <button class="btn btn-primary" type='submit'>Cập nhật sản phẩm</button>
+        <a class="btn btn-danger m-3" href="{{ url('managerproduct') }}">Quay lại</a>
+        <button class="btn btn-primary m-3" type='submit'>Cập nhật sản phẩm</button>
     </div>
     
 </form>

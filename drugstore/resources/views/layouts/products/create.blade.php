@@ -2,8 +2,8 @@
 
 <form class="form-edit" method="POST" action="{{ url("managerproduct/store") }}" enctype='multipart/form-data'>
     @csrf
-    <div class="pro-edit">
-        <div class="pro-col d-flex align-items-center justify-content-center">
+    <div class="row">
+        <div class="col-md-6 col-ms-12 border d-flex align-items-center justify-content-center">
             <div class="d-flex justify-content-center p-3">
                 <div class="pro-col-content">
                     <div class="input-group mb-3">
@@ -49,7 +49,7 @@
                 
                 </div> 
             </div>  
-            <div class="pro-col d-flex align-items-center justify-content-center">
+            <div class="col-md-6 col-ms-12 border d-flex align-items-center justify-content-center">
                 <div class="d-flex justify-content-center p-3">
                     <div class="input-group mb-3">
                         <label class="input-group-text">Chọn ảnh hiển thị</label>

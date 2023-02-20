@@ -60,18 +60,17 @@ class ProductsController extends Controller
         $productTypes= ProductType::all();
 
         $search= $request->input('search') ?? "";
-        if($search =="" and $request->input('role')==0){
-            /* $products=Products::orderBy('quantity','DESC')->paginate(9); */
-            $products=Products::paginate(9);
-
+        session()->put('searching',[$request->input('search'),$request->input('role')]);
+        if($search =="" && $request->input('role')==0){
+                $products=Products::paginate(9);
         }
-        else{
+        else if($search !="" && $request->input('role')==0){
             $products=Products::where('name','LIKE',"%$search%")->get()->paginate(9);
         }
+        else{
+            $products=Products::where('name','LIKE',"%$search%")->where('role','LIKE',$request->input('role'))->get()->paginate(9);
+        }
         $cart= Cart::content();
-        
-        
-        
         return view('layouts.products.index',compact('products','search','productTypes'));
     }
 
@@ -90,8 +89,13 @@ class ProductsController extends Controller
 
         }
         if(isset($cart[$products->id])){
-            $cart[$products->id]['quantity']++;
-            return $this->setSessionAndReturn($cart);
+            if( $cart[$products->id]['quantity'] < $products->quantity){
+                $cart[$products->id]['quantity']++;
+                return $this->setSessionAndReturn($cart);
+            }
+            else{
+                return $this->setSessionAndReturn($cart);
+            }
         }
         $cart[$products->id]=$this->getSessionData($products);
         return $this->setSessionAndReturn($cart);
@@ -122,25 +126,28 @@ class ProductsController extends Controller
         }
         else{
             if(isset($cart[$products->id])){
-                $cart[$products->id]['quantity']++;
-                return $this->setSessionAndReturn($cart);
-
+                if( $cart[$products->id]['quantity'] < $products->quantity){
+                    $cart[$products->id]['quantity']++;
+                    return $this->setSessionAndReturn($cart);
+                }
+                else{
+                    return $this->setSessionAndReturn($cart);
+                }
             }
         }
     }
 
     public function ManagerProduct(){
         $products= Products::with('orderproducts','producttypes')->get()->paginate(10);
-
-
         return view('layouts.products.manager',compact('products'));
     }
+
     public function create(){
         $manufaturers= Manufacturers::all();
         $ProductTypes= ProductType::all();
-        
         return view('layouts.products.create',compact('manufaturers','ProductTypes'));
     }
+
     public function store(Request $request){
         $ImgForShowing=$request->file('showimg');
         if($request->file('showimg') != ''){
@@ -166,24 +173,17 @@ class ProductsController extends Controller
         ]);
         return redirect('managerproduct');
     }
-    
 
     public function edit(Products $products){
         $countrys=Countrys::all();
         $ProductTypes= ProductType::all();
         $manufaturers= Manufacturers::all();
-
         return view('layouts.products.edit',compact('products','manufaturers','ProductTypes'));
-        
     }
 
     public function update(Request $request, Products $products){
-        
-
-       
         $ImgForShowing=$request->file('showimg');
-        
-        
+
         $data=[
             'name'=>$request->input('name'),
             'prosuser'=>$request->input('prosuser'),
@@ -194,7 +194,6 @@ class ProductsController extends Controller
             'manufacturers_id'=>$request->input('manufacturers_id'),
             'role'=>$request->input('role')
 
-
         ];
         if($request->file('showimg') != ''){
             $products->path='product_img';
@@ -202,7 +201,6 @@ class ProductsController extends Controller
             $products->save();
             $ImgForShowing->storeAs('',$ImgForShowing->getClientOriginalName(),'productimg');
         }
-        
 
         if($ProductImgs= $request->file('productimg')){
             foreach($ProductImgs as $ProductImg){
@@ -214,17 +212,15 @@ class ProductsController extends Controller
                 $ProductImg->storeAs('',$ProductImg->getClientOriginalName(),'productimg');
             }
         }
-        
         $products->update($data);
-       
-        
         return back()->withInput();
     }
 
     public function delete($id){
         $deleted = DB::table('imgs')->where('products_id', '=', $id)->delete();
+        $deleted = DB::table('orderproducts')->where('products_id', '=', $id)->delete();
         Products::destroy($id);
-        return redirect('mana-product');
+        return redirect('managerproduct');
     }
 
     public function productprofile(Products $products){

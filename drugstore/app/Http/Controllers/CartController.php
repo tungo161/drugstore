@@ -56,16 +56,10 @@ class CartController extends Controller
         $order->price= session()->get('moneys');
         $order->phonefortake= $request->input('phone');
         $order->note= $request->input('note');
-
         $order->addressfortake=$request->input('address');
         $order->ordertypes_id= $request->input('ordertypes_id');
-
-
         $order->save();
     
-        
-
-        
         foreach (session()->get('cart') as $ids=>$product){
         DB::insert('insert into orderproducts (orders_id, products_id,quantity_of_product) values (?, ?, ?)', [$order->id, $ids, $product['quantity'] ]);
         }
@@ -79,18 +73,15 @@ class CartController extends Controller
         session()->forget(['cart', 'moneys']);
         return redirect('cart');
     }
-    public function managerorder(){
+    public function managerorder(Request $request){
 
         $orders= Orders::with('user')->get();
         $orders=orders::paginate(20);
         return view('layouts.order.manager',compact('orders'));
     }
-
     public function viewInformationOrder(Orders $orders)
     {
         $OrderWithRelationship=$orders::with('user','productInOrder','Products')->where('id', '=', $orders->id)->get();
-        
         return view('layouts.order.viewInformation',compact('OrderWithRelationship'));
-
     }
 }

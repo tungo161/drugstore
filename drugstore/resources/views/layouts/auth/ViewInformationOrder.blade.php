@@ -7,7 +7,7 @@
 
 <h3 class="text-center p-1">Thông tin hóa đơn</h3>
 
-    <div class="container-fluid p-2">
+    <div class="container p-1">
         <div class="row">
             
             
@@ -38,17 +38,18 @@
                                         $count++;
                                     @endphp
                                 <td>{{ $ProductInformation->price }}</td>
-                                <td> @money($money) </td>
+                                <td>@money($money) VNĐ</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-end">
-                    <span>Tổng tiền @money($total)</span>
+                <span>Tổng tiền @money($total) VNĐ</span>
                 </div>
+            
             </aside>
-            <aside class="col-lg-6 ">
-
+            <aside class="col-lg-6 card ">
+                <div class="m-4"></div>
                 <div class="mb-3">
                     <label>Tài khoản đặt hàng: </label>
                     <span>{{ $Order->user->email }}</span>

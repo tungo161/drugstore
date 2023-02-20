@@ -25,35 +25,28 @@
                 <th>Ghi chú</th>
                 <th>Ngày tạo</th>
                 <th>Xem thêm</th>
-
-               
-
-                
-            </tr>
-            @foreach ($orders as $order)
-
-            <tr style="border:1px black solid">
-                <td>{{ $order->usernametake }}</td>
-
-                <td>{{ $order->addressfortake }}</td>
-                <td>{{ $order->phonefortake }}</td>
-                <td>{{ $order->price }}</td>
-                <td style="white-space: nowrap; 
-                width: 20px; 
-                overflow: hidden;
-                ">{!! $order->note !!}</td>
-
-
-                <td>{{ $order->created_at }}</td>
-                <th><a class="btn btn-success" href='{{ url("managerorder/viewInformationOrder/{$order->id}") }}'>View</a></th>
-                
-            </tr>
-            @endforeach
+                    @foreach ($users as $user )
+                        </tr>
+                        @foreach ($user->order as $orders)
+                            
+                        <tr>
+                            <th>{{ $orders->usernametake }}</th>
+                            <th>{{ $orders->addressfortake }}</th>
+                            <th>{{ $orders->phonefortake }}</th>
+                            <th>{{ $orders->price }}</th>
+                            <th>{!! $orders->note !!}</th>
+                            <th>{{ $orders->created_at }}</th>
+                            <th><a class="btn btn-success" href='{{ url("profileuser/viewAllOrder/{$user->id}/viewInformation/{$orders->id}") }}'>View</a></th>
+                        </tr>
+                    @endforeach
+                @endforeach 
         </table>
         
     </div>
+    <div class="d-flex justify-content-center m-2"><a class="btn btn-danger" href="{{ URL::previous() }}">Go Back</a></div>
+
     <div class="d-flex justify-content-center">
-        {!! $orders->onEachSide(1)->links() !!}
+        {!! $users->onEachSide(1)->links() !!}
     </div>
     
     <script type="text/javascript" src="js.js"></script>

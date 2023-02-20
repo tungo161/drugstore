@@ -17,6 +17,7 @@
     <div class="container d-flex justify-content-center pt-3">
         <a class="btn btn-primary" href="{{ url('managerproduct/create')}}">Thêm mới sản phẩm</a>
     </div>
+    
     <div class="container d-flex justify-content-center p-3">
         <table class="table table-striped table-hover">
             <tr style="border:1px black solid">
@@ -26,8 +27,8 @@
                 <th>ảnh hiển thị</th>
                 <th>giá</th>
                 <th>Số lượng đã bán</th>
-                <th>created_at</th>
-                <th>updated_at</th>
+                <th>Ngày tạo</th>
+                <th>Ngày cập nhật</th>
                 <th>Action 1</th>
                 <th>Action2</th>
                 
@@ -44,7 +45,7 @@
                 <td>
                     @foreach ($product->orderproducts as $orderproduct)
                     @php
-                        $sum+=$orderproduct->quantity;   
+                        $sum+=$orderproduct->quantity_of_product;   
                     @endphp
                     
                     @endforeach
@@ -55,7 +56,7 @@
                 <td><a class="btn btn-primary" href='{{ url("managerproduct/{$product->id}/edit") }}'>Update</a></td>
                 <td>
                     <a class="btn btn-danger" href="javascript:void(0)" onclick="document.getElementById('delete-'+{{ $product->id }}).submit()">Delete</a>
-                    <form id="delete-{{ $product->id }}" method="POST" action="{{ url("mana-product/{$product->id}") }}">
+                    <form id="delete-{{ $product->id }}" method="POST" action="{{ url("managerproduct/{$product->id}") }}">
                         @csrf
                         @method('DELETE')
                     </form>
