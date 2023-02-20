@@ -17,27 +17,32 @@
         <table class="table table-striped">
             <tr style="border:1px black solid">
                 <th>Tên người nhận hàng</th>
-
                 <th>Địa chỉ nhận hàng</th>
                 <th>Số điện thoại nhận hàng</th>
                 <th>Tổng tiền hàng</th>
-  
                 <th>Ghi chú</th>
                 <th>Ngày tạo</th>
                 <th>Xem thêm</th>
                     @foreach ($users as $user )
                         </tr>
                         @foreach ($user->order as $orders)
-                            
-                        <tr>
-                            <th>{{ $orders->usernametake }}</th>
-                            <th>{{ $orders->addressfortake }}</th>
-                            <th>{{ $orders->phonefortake }}</th>
-                            <th>{{ $orders->price }}</th>
-                            <th>{!! $orders->note !!}</th>
-                            <th>{{ $orders->created_at }}</th>
-                            <th><a class="btn btn-success" href='{{ url("profileuser/viewAllOrder/{$user->id}/viewInformation/{$orders->id}") }}'>View</a></th>
-                        </tr>
+                            @if(Auth::user()->id ==$orders->users_id)
+                                <tr>
+                                    <th>{{ $orders->usernametake }}</th>
+                                    <th>{{ $orders->addressfortake }}</th>
+                                    <th>{{ $orders->phonefortake }}</th>
+                                    <th>{{ $orders->price }}</th>
+                                    <th>{!! $orders->note !!}</th>
+                                    <th>{{ $orders->created_at }}</th>
+                                    <th><a class="btn btn-success" href='{{ url("profileuser/viewAllOrder/{$user->id}/viewInformation/{$orders->id}") }}'>View</a></th>
+                                </tr>
+                            @else
+                                <tr>
+                                    <th><p class="text-warning text-center">Bạn đang cố truy cập vào dữ liệu của tài khoản khác</p></th>
+                                    <th><a href="{{ url('')}}" class="btn btn-danger">Trở về</a></th>
+                                </tr>
+                                @break
+                        @endif
                     @endforeach
                 @endforeach 
         </table>

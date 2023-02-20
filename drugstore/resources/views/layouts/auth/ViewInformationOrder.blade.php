@@ -25,22 +25,23 @@
                     </thead>
                     <tbody>
                     
-                            
+                
             @foreach ($OrderWithRelationship as $Order )
-    
+                    @if(Auth::user()->id ==$Order->users_id)    
                         @foreach ($Order->Products as $ProductInformation)
                             <tr>
                                 <td>{{ $ProductInformation->name }}</td>
-                                <td>{{ $Order->productInOrder[$count]->quantity_of_product }}</td>
-                                    @php
-                                        $money=$ProductInformation->price *$Order->productInOrder[$count]->quantity_of_product;
-                                        $total+=$money;
-                                        $count++;
-                                    @endphp
-                                <td>{{ $ProductInformation->price }}</td>
+                                    <td>{{ $Order->productInOrder[$count]->quantity_of_product }}</td>
+                                        @php
+                                            $money=$ProductInformation->price *$Order->productInOrder[$count]->quantity_of_product;
+                                            $total+=$money;
+                                            $count++;
+                                        @endphp
+                                    <td>{{ $ProductInformation->price }}</td>
                                 <td>@money($money) VNĐ</td>
                             </tr>
                         @endforeach
+                        @endif
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-end">
@@ -50,6 +51,7 @@
             </aside>
             <aside class="col-lg-6 card ">
                 <div class="m-4"></div>
+                @if(Auth::user()->id ==$Order->users_id)  
                 <div class="mb-3">
                     <label>Tài khoản đặt hàng: </label>
                     <span>{{ $Order->user->email }}</span>
@@ -74,6 +76,10 @@
                         <label>Ghi chú: </label>
                         <span>{!! $Order->note !!}</span>
                     </div>
+                    @else
+                        <p class="text-warning text-center">Bạn đang cố truy cập vào dữ liệu của tài khoản khác</p>
+                        <a href="{{ url('')}}" class="btn btn-danger">Trở về</a>
+                    @endif
                     @endforeach
                     
             </aside>

@@ -34,9 +34,13 @@
                         <div class="row mt-3">
                             <div class="col-md-6"><p >Số tiền đã thanh toán bằng tài khoản @money($user->account) VNĐ</p></div>
                         </div>
-                        <div class="mt-5 text-center"><a class="btn btn-primary profile-button" href='{{ url("profileuser/viewAllOrder/{$user->id}") }}'>Xem hóa đơn</a></div>
+                        
+                        <div class="mt-5 d-flex justify-content-center">
+                            <div class="m-2 text-center"><a class="btn btn-primary profile-button" href='{{ url("profileuser/viewAllOrder/{$user->id}") }}'>Xem hóa đơn</a></div>
 
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Cập nhật tài khoản</button></div>
+                            <div class="m-2 text-center"><button class="btn btn-primary profile-button" type="submit">Cập nhật tài khoản</button></div>
+    
+                        </div>
                     </div>
                 </div>
                 
