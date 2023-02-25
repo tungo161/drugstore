@@ -36,8 +36,9 @@
                         </div>
                         
                         <div class="mt-5 d-flex justify-content-center">
+                            @if(Auth::user()->role!=1)
                             <div class="m-2 text-center"><a class="btn btn-primary profile-button" href='{{ url("profileuser/viewAllOrder/{$user->id}") }}'>Xem hóa đơn</a></div>
-
+                            @endif
                             <div class="m-2 text-center"><button class="btn btn-primary profile-button" type="submit">Cập nhật tài khoản</button></div>
     
                         </div>

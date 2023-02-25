@@ -19,6 +19,7 @@
         <div class="d-flex justify-content-center p-5">
             
             <div class="w-50 p-3 border border-primary rounded">
+                <h1 class="text-center">Login</h1>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form2Example1">Email</label>
                     <input type="email" name="email" id="form2Example1" class="form-control" />

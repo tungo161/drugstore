@@ -60,7 +60,12 @@ class AuthController extends Controller
             'password'=>$request->input('password')
             ]))
             {
-                return redirect('');
+                if(Auth::user()->role !=1){
+                    return redirect('');
+                }
+                else{
+                    return redirect('admin');
+                }
             }
         else{
             return view('layouts.auth.login')->with('jsAlert', 'Đăng nhập thất bại');

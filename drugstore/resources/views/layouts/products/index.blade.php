@@ -55,17 +55,13 @@
                                                     
                                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                            
-                                                @if(Auth::check())
-                                                    @if(Auth::user()->role==1)
-
-                                                    @else
+                                                
                                                         @if($product->quantity==0)
                                                             <div class="text-center"><span class="btn btn-danger" style="cursor:context-menu">Hết hàng </span></div>
                                                         @else
                                                             <div class="text-center"><a  href="{{ route('addcart',[$product->id])}}" class="btn btn-outline-dark mt-auto"  type="submit">Thêm giỏ hàng <i class="bi bi-cart-plus-fill"></i></a></div>
                                                         @endif
-                                                @endif
-                                            @endif
+                                                
                                             <div class="text-center">Số lượng còn lại: {{ $product->quantity}} </div>
                                         </div>
 

@@ -45,12 +45,7 @@
                                 @if($products->quantity==0)
                                 <a  class="btn btn-danger btn-lg" style="cursor:context-menu">Hết hàng</a>
                                 @else
-                                @if(Auth::check())
-                                    @if(Auth::user()->role==1)
-                                        @else
-                                            <a type="submit" href="{{ route('addcart',[$products->id])}}" class="btn btn-success btn-lg" name="submit" value="addtocard">Thêm vào giỏ hàng</a>
-                                        @endif
-                                    @endif
+                                    <a type="submit" href="{{ route('addcart',[$products->id])}}" class="btn btn-success btn-lg" name="submit" value="addtocard">Thêm vào giỏ hàng</a>
                                 @endif
                             </div>
                         </div>

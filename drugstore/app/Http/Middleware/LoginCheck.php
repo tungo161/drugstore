@@ -20,9 +20,6 @@ class LoginCheck
         if(Auth::guest()){
             return redirect('login')->with('alert', 'Bạn cần đăng nhập!');
         }
-        elseif(Auth::user()->role!=1){
-            return redirect()->intended('');
-        }
         return $next($request);
     }
 }

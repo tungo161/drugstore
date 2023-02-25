@@ -9,4 +9,7 @@ class ProductType extends Model
 {
     protected $table='producttypes';
     use HasFactory;
+    public function products(){
+        return $this->hasMany(Products::class,'role');
+    }
 }
