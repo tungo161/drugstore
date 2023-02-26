@@ -27,7 +27,7 @@
             </button>
             <a
             class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold"
-            href="#"
+            href="{{ url('admin') }}"
             >Admin View</a
             >
             <button
@@ -44,15 +44,7 @@
             <div class="collapse navbar-collapse" id="topNavBar">
             <div class="d-flex ms-auto my-3 my-lg-0">
                 <div class="input-group">
-                <input
-                    class="form-control"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                />
-                <button class="btn btn-primary" type="submit">
-                    <i class="bi bi-search"></i>
-                </button>
+               
                 </div>
             </div>
             <ul class="navbar-nav">

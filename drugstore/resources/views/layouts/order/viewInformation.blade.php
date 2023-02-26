@@ -88,6 +88,11 @@
                             <label>Ghi chú: </label>
                             <span>{!! $Order->note !!}</span>
                         </div>
+
+                        <div class="mb-3">
+                            <label>Hình thức thanh toán: </label>
+                            <span>{{ $Order->orderType->typeorder }}</span>
+                        </div>
                         @endforeach
                         
                 </aside>

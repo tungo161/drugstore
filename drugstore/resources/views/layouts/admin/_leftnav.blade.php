@@ -9,7 +9,9 @@ id="sidebar"
         <ul class="navbar-nav">
         <li>
             <div class="text-muted small fw-bold text-uppercase px-3">
-            CORE
+                <a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer">
+                    Xin chào {{ Auth::user()->name}}
+                </a>
             </div>
         </li>
         <li>

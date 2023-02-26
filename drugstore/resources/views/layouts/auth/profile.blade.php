@@ -31,10 +31,11 @@
                             <div class="col-md-12"><label class="labels">Số điện thoại</label><input name="phone" type="number" class="form-control" placeholder="enter phone number" value="{{ $user->phone }}"></div>
                             <div class="col-md-12"><label class="labels">Địa chỉ</label><input name="address" type="text" class="form-control" placeholder="enter address line 1" value="{{ $user->address }}"></div>
                         </div>
+                        @if(Auth::user()->role!=1)
                         <div class="row mt-3">
                             <div class="col-md-6"><p >Số tiền đã thanh toán bằng tài khoản @money($user->account) VNĐ</p></div>
                         </div>
-                        
+                        @endif
                         <div class="mt-5 d-flex justify-content-center">
                             @if(Auth::user()->role!=1)
                             <div class="m-2 text-center"><a class="btn btn-primary profile-button" href='{{ url("profileuser/viewAllOrder/{$user->id}") }}'>Xem hóa đơn</a></div>

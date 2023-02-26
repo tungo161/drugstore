@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function index()
     {
         $countrys= Countrys::with('products')->get();
-        $products= Products::all();
+        $products= Products::with('orderproducts','producttypes')->get();
         $productTypes= ProductType::with('products')->get();
         $manufacturers= Manufacturers::all();
         $orders= Orders::all();

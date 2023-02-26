@@ -1,12 +1,20 @@
 
 @extends('layouts.admin._header')
 @extends('layouts.admin._leftnav')
+
 @php
+
   $DataCountryName=array();
   $DataCountryProducts=array();
   $DataProductTypeName=array();
   $DataCountryProductOfType=array();
 @endphp
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +34,7 @@
       <div class="row">
         <div class="col-md-4 mb-4">
           <div class="card bg-primary text-white h-100">
-            <div class="card-body py-5">{{ count($users) }} Người dùng </div>
+            <div class="card-body py-5">{{ count($users) }} Người dùng <i class="bi bi-person-fill"></i></div>
             <div class="card-footer d-flex">
               <a style="display:inline-block; color:white; text-decoration:none;" href="{{ url('managerusers') }}">Xem chi tiết</a>
               
@@ -38,7 +46,7 @@
         </div>
         <div class="col-md-4 mb-4">
           <div class="card bg-warning text-dark h-100">
-            <div class="card-body py-5">{{ count($products) }} Sản phẩm</div>
+            <div class="card-body py-5">{{ count($products) }} Sản phẩm <i class="bi bi-box-seam"></i></div>
             <div class="card-footer d-flex">
               <a style="display:inline-block; color:black; text-decoration:none;" href="{{ url('managerproduct') }}">Xem chi tiết</a>
               <span class="ms-auto">
@@ -49,7 +57,7 @@
         </div>
         <div class="col-md-4 mb-4">
           <div class="card bg-success text-white h-100">
-            <div class="card-body py-5">{{ count($orders) }} Đơn hàng</div>
+            <div class="card-body py-5">{{ count($orders) }} Đơn hàng <i class="bi bi-receipt-cutoff"></i></div>
             <div class="card-footer d-flex">
               <a style="display:inline-block; color:white; text-decoration:none;" href="{{ url('managerorder') }}">Xem chi tiết</a>
               <span class="ms-auto">
@@ -142,7 +150,7 @@ var ProductInCountryChart = new Chart(ctx, {
     options: {
         scales: {
             y: {
-                max: 25,
+                max: 15,
                 min: 0,
                 ticks: {
                     stepSize: 1

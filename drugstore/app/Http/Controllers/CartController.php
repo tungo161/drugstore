@@ -75,13 +75,13 @@ class CartController extends Controller
     }
     public function managerorder(Request $request){
 
-        $orders= Orders::with('user')->get();
+        $orders= Orders::with('user','orderType')->get();
         $orders=orders::paginate(20);
         return view('layouts.order.manager',compact('orders'));
     }
     public function viewInformationOrder(Orders $orders)
     {
-        $OrderWithRelationship=$orders::with('user','productInOrder','Products')->where('id', '=', $orders->id)->get();
+        $OrderWithRelationship=$orders::with('user','productInOrder','Products','orderType')->where('id', '=', $orders->id)->get();
         return view('layouts.order.viewInformation',compact('OrderWithRelationship'));
     }
 }

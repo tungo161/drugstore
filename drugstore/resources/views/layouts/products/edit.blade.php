@@ -1,6 +1,9 @@
 @extends('layouts.apps._style')
 @extends('layouts.admin._header')
 @extends('layouts.admin._leftnav')
+@php
+    $CountImg=0;
+@endphp
 <main class="mt-5 pt-3">
     <form class="form-edit" method="POST" action="{{ url("managerproduct/{$products->id}") }}" enctype='multipart/form-data'>
         @csrf
@@ -73,7 +76,7 @@
             <div class="col-6 border">
                 <div class="d-flex justify-content-center m-2">
                     @if (count($products->imgs) < 6 )     
-                    <input class="btn btn-primary" type="file" name="productimg[]" multiple>
+                    <input  accept="image/jpg, image/jpeg" id="image" class="btn btn-primary" type="file" name="productimg[]" multiple>
                     @else
                     <p class="btn btn-danger">Đã đủ file</p>
                     @endif
@@ -91,10 +94,13 @@
 
                                 </div>
                             </div>
+                                @php
+                                    $CountImg++;
+                                @endphp
                             @endforeach
                         </div>
 
-                            
+                        <p>đếm{{ $CountImg }}</p>    
                         
                     </div>
                 </div>
@@ -107,7 +113,8 @@
         
         <div class="container d-flex justify-content-center p-3">
             <a class="btn btn-danger m-3" href="{{ url('managerproduct') }}">Quay lại</a>
-            <button class="btn btn-primary m-3" type='submit'>Cập nhật sản phẩm</button>
+            <button class="btn btn-primary m-3" id="buttonsubmit" type='submit'>Cập nhật sản phẩm</button>
+            <a class="btn btn-danger m-3" id="buttonDanger" style="display:none;">Cần chọn đúng số lượng file update</a>
         </div>
         
     </form>
@@ -125,6 +132,20 @@
             .catch( error => {
                 console.error( error );
             } );
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+       $("#image").on("change", function() {
+        if ($("#image")[0].files.length > 6-(<?php echo $CountImg ?>) ) {
+            alert("Update tối đa 6 file");
+            document.getElementById('buttonDanger').style.display = "block";
+            document.getElementById('buttonsubmit').style.display = "none";
+        }
+        else{
+            document.getElementById('buttonsubmit').style.display = "block";
+            document.getElementById('buttonDanger').style.display = "none";
+        }
+    });
     </script>
     <script>
         function myFunction() {

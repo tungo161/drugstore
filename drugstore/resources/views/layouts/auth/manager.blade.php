@@ -17,15 +17,14 @@
             <table class="table table-striped">
                 <tr style="border:1px black solid">
                     <th>id</th>
-                    <th>name</th>
-                    <th>email</th>
-                    <th>address</th>
-                    <th>account</th>
-                    <th>phone</th>
-                    <th>created_at</th>
-                    <th>updated_at</th>
-                    <th>role</th>
-                    <th>Action 1</th>
+                    <th>Tên người dùng</th>
+                    <th>Email</th>
+                    <th>Địa chỉ</th>
+                    <th>Số tiền đã thanh toán(VNĐ)</th>
+                    <th>Điện thoại</th>
+                    <th>Ngày tạo</th>
+                    <th>Ngày cập nhật</th>
+                    <th>Loại tài khoản</th>
 
                     
                 </tr>
@@ -35,11 +34,19 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->address }}</td>
-                    <td>{{ $user->account }}</td>
+                    @if($user->role!=1)
+                        <td>{{ $user->account }}</td>
+                    @else
+                        <td>None</td>
+                    @endif
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->created_at }}</td>
                     <td>{{ $user->updated_at }}</td>
-                    <td>{{ $user->role }}</td>
+                    @if($user->role!=1)
+                    <td>Khách hàng</td>
+                    @else
+                        <td>Admin</td>
+                    @endif
                     
                 </tr>
                 @endforeach
