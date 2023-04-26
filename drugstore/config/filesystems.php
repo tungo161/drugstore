@@ -48,6 +48,12 @@ return [
             'url' => env('APP_URL').'/storage/productimg',
             'visibility' => 'public',
         ],
+        'postImg'=>[
+            'driver' => 'local',
+            'root' => storage_path('app/public/postImg'),
+            'url' => env('APP_URL').'/storage/postImg',
+            'visibility' => 'public',
+        ],
         
         's3' => [
             'driver' => 's3',

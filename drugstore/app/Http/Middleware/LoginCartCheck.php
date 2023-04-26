@@ -18,7 +18,7 @@ class LoginCartCheck
     public function handle(Request $request, Closure $next)
     {
         if(Auth::guest()){
-            return redirect('login')->with('alert', 'Bạn cần đăng nhập!');
+            return redirect('login')->with('alert', 'Bạn cần đăng nhập để thực hiện bước tiếp theo!');
         }
         elseif(Auth::user()->role==1){
             return redirect()->intended('');

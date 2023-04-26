@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1057" data-name="Rectangle 1057" width="12" height="12" transform="translate(1168 6026)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Group_13611" data-name="Group 13611" transform="translate(-132 -512)">
+    <circle id="Ellipse_19" data-name="Ellipse 19" cx="12" cy="12" r="12" transform="translate(132 512)" fill="#707070"/>
+    <g id="Mask_Group_73" data-name="Mask Group 73" transform="translate(-1030 -5508)" clip-path="url(#clip-path)">
+      <g id="instagram" transform="translate(1168 6026)">
+        <g id="Group_1989" data-name="Group 1989" transform="translate(9.197 2.22)">
+          <g id="Group_1988" data-name="Group 1988">
+            <path id="Path_203" data-name="Path 203" d="M11.021,2.591a.291.291,0,1,0,.291.291A.292.292,0,0,0,11.021,2.591Z" transform="translate(-10.73 -2.591)" fill="#fff"/>
+          </g>
+        </g>
+        <g id="Group_1991" data-name="Group 1991" transform="translate(3.417 3.417)">
+          <g id="Group_1990" data-name="Group 1990">
+            <path id="Path_204" data-name="Path 204" d="M6.57,3.987A2.583,2.583,0,1,0,9.152,6.57,2.586,2.586,0,0,0,6.57,3.987Z" transform="translate(-3.987 -3.987)" fill="#fff"/>
+          </g>
+        </g>
+        <g id="Group_1993" data-name="Group 1993">
+          <g id="Group_1992" data-name="Group 1992">
+            <path id="Path_205" data-name="Path 205" d="M8.71,0H3.29A3.293,3.293,0,0,0,0,3.29V8.71A3.293,3.293,0,0,0,3.29,12H8.71A3.293,3.293,0,0,0,12,8.71V3.29A3.293,3.293,0,0,0,8.71,0ZM6,9.291A3.291,3.291,0,1,1,9.291,6,3.3,3.3,0,0,1,6,9.291Zm3.488-5.78a1,1,0,1,1,1-1A1,1,0,0,1,9.488,3.512Z" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -54,7 +54,7 @@ class PayPalController extends Controller
                 Products::where('id', $id)->decrement('quantity', $products['quantity']);
             }
             session()->forget(['cart', 'moneys']);
-            return redirect('cart');
+            return redirect('complete-pay')->with('success', 'Đặt hàng thành công.');
         }
         else{
             session()->put('orderInfomation',
@@ -150,13 +150,9 @@ class PayPalController extends Controller
             session()->forget(['cart', 'moneys']);
 
             
-            return redirect()
-                ->route('viewpaychoose')
-                ->with('success', 'Thanh toán thành công.');
+            return redirect('complete-pay')->with('success', 'Thanh toán thành công.');
         } else {
-            return redirect()
-                ->route('viewpaychoose')
-                ->with('error', $response['message'] ?? 'Thanh toán thất bại.');
+            return redirect('complete-pay')->with('error', $response['message'] ?? 'Thanh toán thất bại.');
         }
     }
 

@@ -65,10 +65,9 @@
               </span>
             </div>
           </div>
-        </div>
-        
+        </div>    
       </div>
-     
+    
       @foreach ($countrys as $country )
         @php
           array_push($DataCountryName, $country->name);

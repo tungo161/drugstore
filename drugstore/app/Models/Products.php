@@ -29,3 +29,4 @@ class Products extends Model
         return $this->belongsTo(ProductType::class,'role');
     }
 }
+

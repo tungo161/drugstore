@@ -38,8 +38,6 @@ a{
 }
 
 
-  /* Set a style for all buttons */
-
 
 
 
@@ -115,4 +113,7 @@ a{
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;  
     overflow: hidden;
+}
+.ck-reset.ck-editor.ck-rounded-corners{
+    width:100% !important;
 }

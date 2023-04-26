@@ -1,0 +1,84 @@
+.owl-stage {
+  display: flex;
+  justify-content: center;
+}
+
+.under-line:after {
+  background-color: var(--color-1);
+  content: " ";
+  height: 3px;
+  left: 0;
+  position: absolute;
+  width: 100px;
+  bottom: -10px;
+}
+
+.between-line:after {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.products__slide button.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: -60px;
+  z-index: 10;
+}
+.products__slide button.owl-next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  right: -60px;
+}
+
+.banner-product button.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  z-index: 10;
+}
+.banner-product button.owl-next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  right: 0px;
+}
+
+.maps__item::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: var(--color-7);
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+  top: 26px;
+  left: -5px;
+}
+.maps__item.active::before {
+  background-color: var(--color-1);
+}
+
+.simple-list-example-scrollspy .active {
+  color: var(--color-1) !important;
+  border-color: var(--color-1) !important;
+  background-color: var(--color-5);
+}
+
+.simple-list-example-scrollspy {
+  position: sticky;
+  top: 25%;
+}
+.simple-list-example-scrollspy .border-start {
+  border-left-style: dotted !important;
+}
+
+.form-control {
+  background-color: var(--color-5) !important;
+}
+
+.input-group-text {
+  background-color: var(--color-5) !important;
+}

@@ -24,6 +24,6 @@ class Orders extends Model
     {
         return $this->belongsTo(OrderType::class,'ordertypes_id');
     }
-    
-
 }
+
+

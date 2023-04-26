@@ -1,0 +1,52 @@
+.list-group-item.maps-item {
+  border-style: dotted !important;
+}
+
+.list-group-item.active {
+  background-color: white !important;
+  color: var(--color-1) !important;
+  border-color: var(--color-1) !important;
+  border-style: dotted !important;
+}
+
+.maps-item::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: var(--color-7);
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+  top: 14px;
+  left: -5px;
+}
+
+.maps-item.active::before {
+  background-color: var(--color-1);
+}
+
+.education-program__content__slide .owl-nav, .department__content__slide .owl-nav, .administrators__content__slide .owl-nav {
+  margin: 0 !important;
+}
+.education-program__content__slide .owl-nav button.owl-prev, .department__content__slide .owl-nav button.owl-prev, .administrators__content__slide .owl-nav button.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  z-index: 10;
+}
+.education-program__content__slide .owl-nav button.owl-next, .department__content__slide .owl-nav button.owl-next, .administrators__content__slide .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  z-index: 10;
+}
+
+.list-group {
+  position: sticky;
+  top: 25%;
+}
+
+.owl-stage {
+  display: flex;
+  justify-content: center;
+}

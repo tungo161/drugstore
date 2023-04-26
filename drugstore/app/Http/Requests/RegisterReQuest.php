@@ -28,7 +28,7 @@ class RegisterReQuest extends FormRequest
             'email'=>'required|unique:users,email',
             'name'=>'required',
             'password'=>'required',
-            'phone'=>'required|max:15',
+            'phone'=>'required|numeric',
             'address'=>'required|max:50',
             'password' => 'required|confirmed',
             'password_confirmation' => 'required'
@@ -41,7 +41,7 @@ class RegisterReQuest extends FormRequest
             'email.unique'=>'email đã tồn tại',
             'name.required' => 'Tên không được để trống',
             'phone.required' => 'Số điện thoại không được để trống',
-            'phone.max' => 'Số điện thoại không được quá 15 kí tự',
+            'phone.numeric' => 'Số điện thoại phải là số',
             'address.max' => 'Địa chỉ quá dài',
             'address.required' => 'Địa chỉ không được để trống',
             'password.confirmed'=>'Xác nhận mật khẩu chưa chính xác',

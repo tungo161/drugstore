@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_6878" data-name="Rectangle 6878" width="16" height="16" transform="translate(118 719)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_477" data-name="Mask Group 477" transform="translate(-118 -719)" clip-path="url(#clip-path)">
+    <g id="líchugiaodich" transform="translate(118 719.364)">
+      <path id="Refund_1_" d="M16.818,8.864A7.636,7.636,0,0,1,2.1,11.724a.364.364,0,1,1,.674-.273A6.91,6.91,0,1,0,3.1,5.591h.994a.364.364,0,0,1,.325.526L2.962,9.026a.364.364,0,0,1-.651,0L.857,6.117a.364.364,0,0,1,.325-.526h1.1A7.637,7.637,0,0,1,16.818,8.864Zm-3.455,0A4.182,4.182,0,1,1,9.182,4.682,4.186,4.186,0,0,1,13.364,8.864Zm-2.727.727A1.092,1.092,0,0,0,9.545,8.5H8.818a.364.364,0,1,1,0-.727h1.273a.364.364,0,1,0,0-.727H9.545V6.5a.364.364,0,1,0-.727,0v.545a1.091,1.091,0,1,0,0,2.182h.727a.364.364,0,1,1,0,.727H8.273a.364.364,0,1,0,0,.727h.545v.545a.364.364,0,1,0,.727,0v-.545A1.092,1.092,0,0,0,10.636,9.591Z" transform="translate(-0.818 -1.227)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

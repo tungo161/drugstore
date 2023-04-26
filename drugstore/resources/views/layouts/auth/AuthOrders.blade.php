@@ -1,5 +1,5 @@
 {{--Sử dụng layout nào để thực hiện vieew--}}
-@include('layouts.apps._header')
+@include('layouts.apps_header')
 
 <!DOCTYPE html>
 <html lang="en">

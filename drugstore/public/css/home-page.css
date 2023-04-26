@@ -1,0 +1,278 @@
+.home-page .slidebanner {
+  /* .owl-dot .active span{
+          background: #D6D6D6 !important;
+          border: 1px solid white;
+      }
+      .owl-dot span{
+          background: none !important;
+          border: 1px solid white;
+      } */
+}
+.home-page .slidebanner .owl-stage {
+  display: flex;
+  justify-content: center;
+}
+.home-page .slidebanner .owl-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-page .slidebanner .owl-dots .owl-dot span {
+  background: none;
+  border: 1px solid white;
+  width: 9px;
+  height: 9px;
+}
+.home-page .slidebanner .owl-dots .owl-dot.active span {
+  background: white;
+  width: 14px;
+  height: 14px;
+}
+.home-page .slidebanner .owl-dots .owl-dot.active span .owl-dots .owl-dot.active span {
+  background: white;
+  width: 14px;
+  height: 14px;
+}
+.home-page .slidebanner .owl-dots .owl-dot.active span {
+  background: white;
+  width: 14px;
+  height: 14px;
+}
+.home-page .slidebanner .owl-nav button.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: 59px;
+  z-index: 10;
+}
+.home-page .slidebanner .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  right: 59px;
+  z-index: 10;
+}
+.home-page .slidebanner .owl-dots {
+  position: absolute;
+  bottom: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.home-page .vmms-information__slide img {
+  width: initial !important;
+}
+.home-page .vmms-information__slide .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  z-index: 10;
+}
+.home-page .vmms-information__slide .owl-nav button.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  z-index: 10;
+}
+.home-page .vmms-information__slide .owl-dots {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 26px;
+}
+.home-page .vmms-notify__right__content__slide .owl-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-page .vmms-notify__right__content__slide .owl-dots .owl-dot span {
+  background: none;
+  border: 1px solid var(--color-1);
+  width: 9px;
+  height: 9px;
+}
+.home-page .vmms-notify__right__content__slide .owl-dots .owl-dot.active span {
+  background: var(--color-1);
+  width: 14px;
+  height: 14px;
+}
+.home-page .vmms-notify__right__content__slide .owl-nav {
+  margin: 0;
+}
+.home-page .vmms-notify__right__content__slide .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  z-index: 10;
+}
+.home-page .vmms-notify__right__content__slide .owl-nav button.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  z-index: 10;
+}
+.home-page .vmms-notify__right__content__slide .owl-dots {
+  margin-bottom: 24px;
+}
+.home-page .activities__content__slide .owl-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-page .activities__content__slide .owl-dots .owl-dot span {
+  background: none;
+  border: 1px solid var(--color-1);
+  width: 9px;
+  height: 9px;
+}
+.home-page .activities__content__slide .owl-dots .owl-dot.active span {
+  background: var(--color-1);
+  width: 14px;
+  height: 14px;
+}
+.home-page .activities__content__slide h6 {
+  left: 16px;
+  bottom: 16px;
+  right: 16px;
+}
+.home-page .activities__content__slide .owl-nav {
+  padding-bottom: 24px;
+}
+.home-page .activities__content__slide .owl-nav button.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: -59px;
+  z-index: 10;
+}
+.home-page .activities__content__slide .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  z-index: 10;
+}
+.home-page .activities__content__slide .owl-dots {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.home-page .news-event .owl-stage-outer {
+  padding: 5px;
+}
+.home-page .news-event__content__slide .owl-nav button.owl-prev {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  left: -59px;
+}
+.home-page .news-event__content__slide .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  right: -59px;
+}
+.home-page .news-event__content__slide .owl-dots {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.home-page .news-event__content__slide__time__icon {
+  width: initial !important;
+}
+.home-page .pharmaceutical-company .owl-stage-outer {
+  padding: 5px;
+}
+.home-page .pharmaceutical-company__content__slide .owl-nav button.owl-prev {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  left: -59px;
+}
+.home-page .pharmaceutical-company__content__slide .owl-nav button.owl-next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  right: -59px;
+}
+.home-page .pharmaceutical-company__content__slide .owl-dots {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.home-page .owl-stage {
+  display: flex;
+  justify-content: center;
+}
+.home-page .under-line:after {
+  background-color: var(--color-1);
+  content: " ";
+  height: 3px;
+  left: 0;
+  position: absolute;
+  width: 100px;
+  bottom: -10px;
+}
+.home-page .between-line:after {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+.home-page .products__slide button.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: -60px;
+  z-index: 10;
+}
+.home-page .products__slide button.owl-next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  right: -60px;
+}
+.home-page .banner-product button.owl-prev {
+  position: absolute;
+  top: 50%;
+  left: 0px;
+  z-index: 10;
+}
+.home-page .banner-product button.owl-next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  right: 0px;
+}
+.home-page .maps__item::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: var(--color-7);
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+  top: 26px;
+  left: -5px;
+}
+.home-page .maps__item.active::before {
+  background-color: var(--color-1);
+}
+.home-page .simple-list-example-scrollspy .active {
+  color: var(--color-1) !important;
+  border-color: var(--color-1) !important;
+  background-color: var(--color-5);
+}
+.home-page .simple-list-example-scrollspy {
+  position: sticky;
+  top: 25%;
+}
+.home-page .simple-list-example-scrollspy .border-start {
+  border-left-style: dotted !important;
+}

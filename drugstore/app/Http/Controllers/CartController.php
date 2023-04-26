@@ -34,9 +34,7 @@ class CartController extends Controller
     public function paginate($items, $perPage = 15, $page = null, $options = [])
     {
         $page = $page ?: (PaginationPaginator::resolveCurrentPage() ?: 1);
-
         $items = $items instanceof Collection ? $items : Collection::make($items);
-
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
@@ -45,12 +43,11 @@ class CartController extends Controller
         $user = Auth::user();
         return view('layouts.products.paycartchose',compact('user'));  
     }
-    public function addInfomationtoCart(CartRequest $request){
 
+    public function addInfomationtoCart(CartRequest $request){
         $order=new Orders();
         $orderproducts=new OrderProducts();
         $user = Auth::user();
-
         $order->usernametake= $request->input('name');
         $order->users_id= $user->id;
         $order->price= session()->get('moneys');
@@ -59,7 +56,6 @@ class CartController extends Controller
         $order->addressfortake=$request->input('address');
         $order->ordertypes_id= $request->input('ordertypes_id');
         $order->save();
-    
         foreach (session()->get('cart') as $ids=>$product){
         DB::insert('insert into orderproducts (orders_id, products_id,quantity_of_product) values (?, ?, ?)', [$order->id, $ids, $product['quantity'] ]);
         }
@@ -68,17 +64,17 @@ class CartController extends Controller
         }
         foreach (session('cart') as $id => $products){
             Products::where('id', $id)->decrement('quantity', $products['quantity']);
-            
         }
         session()->forget(['cart', 'moneys']);
         return redirect('cart');
     }
-    public function managerorder(Request $request){
 
+    public function managerorder(Request $request){
         $orders= Orders::with('user','orderType')->get();
         $orders=orders::paginate(20);
-        return view('layouts.order.manager',compact('orders'));
+        return view('layouts.admin.manager-order-page',compact('orders'));
     }
+
     public function viewInformationOrder(Orders $orders)
     {
         $OrderWithRelationship=$orders::with('user','productInOrder','Products','orderType')->where('id', '=', $orders->id)->get();

@@ -1,0 +1,22 @@
+<svg id="Group_19135" data-name="Group 19135" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_972" data-name="Rectangle 972" width="10" height="10" transform="translate(0)" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <path id="Path_219" data-name="Path 219" d="M15,0A15,15,0,1,0,30,15,15,15,0,0,0,15,0Z" fill="#e5e5e5"/>
+  <g id="arrow_down" data-name="arrow down" transform="translate(20 20) rotate(180)" clip-path="url(#clip-path)">
+    <g id="Icons" transform="translate(0 0)">
+      <g id="Rounded">
+        <g id="Navigation">
+          <g id="_-Round-_-Navigation-_-arrow_back_ios" data-name="-Round-/-Navigation-/-arrow_back_ios">
+            <g id="Group_1915" data-name="Group 1915">
+              <path id="Path" d="M0,0H10V10H0Z" fill="none" fill-rule="evenodd" opacity="0.87"/>
+              <path id="_-Icon-Color" data-name="🔹-Icon-Color" d="M4.322.153a.521.521,0,0,0-.738,0L.122,3.616a.415.415,0,0,0,0,.588L3.584,7.666a.521.521,0,1,0,.738-.737L1.305,3.907,4.326.886A.519.519,0,0,0,4.322.153Z" transform="translate(2.603 1.093)" fill-rule="evenodd"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

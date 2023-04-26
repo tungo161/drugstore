@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_1885" data-name="Rectangle 1885" width="12" height="12" transform="translate(1136 6026)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Group_13610" data-name="Group 13610" transform="translate(-98 -512)">
+    <circle id="Ellipse_87" data-name="Ellipse 87" cx="12" cy="12" r="12" transform="translate(98 512)" fill="#0095e6"/>
+    <g id="Group_13576" data-name="Group 13576" transform="translate(-1032 -5508)" clip-path="url(#clip-path)">
+      <g id="facebook" transform="translate(1138.763 6026)">
+        <g id="_x30_1._Facebook" transform="translate(0)">
+          <path id="Icon_11_" d="M6.778,8.543H5.292c-.24,0-.315-.09-.315-.315V6.411c0-.24.09-.315.315-.315H6.778V4.773a3.336,3.336,0,0,1,.406-1.7A2.492,2.492,0,0,1,8.521,1.965a3.341,3.341,0,0,1,1.156-.2h1.472c.21,0,.3.09.3.3V3.782c0,.21-.09.3-.3.3-.406,0-.811,0-1.217.015a.542.542,0,0,0-.616.616c-.015.451,0,.886,0,1.352h1.742c.24,0,.33.09.33.33V8.213c0,.24-.075.315-.33.315H9.317v4.9c0,.255-.075.345-.345.345H7.094c-.225,0-.315-.09-.315-.315V8.543Z" transform="translate(-4.976 -1.77)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -22,4 +22,5 @@ class AdminController extends Controller
         $users= User::all();
         return view('layouts.admin.home',compact('products','manufacturers','orders','users','countrys','productTypes'));
     }
+    
 }

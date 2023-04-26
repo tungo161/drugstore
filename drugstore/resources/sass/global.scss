@@ -1,0 +1,419 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+    body{
+        font-family: 'Open Sans' !important;
+    }
+    
+:root {
+    font-family: "OpenSans";
+
+    --color-1: #0095E6;
+    --color-2: #DD352E;
+    --color-3: #FBFBFB;
+    --color-4: #f2f2f2;
+    --color-5: #F5F5F5;
+    --color-6: #2E8ECE;
+    --color-7: #707070;
+    --color-8: #DEDEDE;
+    --color-9: #F9F9F9;
+    --color-10: #EFEFEF;
+    --color-11: #E5E5E5;
+    --color-12: #00000073;
+    
+    --color-13: #ff5048;
+    --color-14: #DD352E ;
+    /*
+    - Color-1: Primary (CTA)
+    - Color-2: Tiêu đề
+    - Color-3: Mô tả
+    - Color-4: Nền 1
+    - Color-5: Nền 2
+    - Color-6: Nền 3
+    - Color-7: Yếu tố phụ (Đường line, bullet symbol, icon)
+    - Color-8: Tương tác (Hover, Clicked, Drag, Tap, Focus, Pressed...)
+    - Color-9: black
+    - Color-10: white
+    - Color-11: info
+    - Color-12: error
+    - Color-13: success
+    - Color-14: warning
+    Màu sắc (Sử dụng tối đa 14 màu, từ màu 10 - 14: Không thay đổi; các màu còn lại có thể áp dụng với các thành phần khác nhau theo phong cách thiết kế)
+    */
+    // Font-size Từ lớn đến bé, fs1 là lớn nhất
+    // Font-size được quy ước theo Bootstrap 1rem ~ 16px
+    --fs-1: 2.5rem;
+    --fs-2: 2rem;
+    --fs-3: 1.75rem;
+    --fs-4: 1.5rem;
+    --fs-5: 1.25rem;
+    --fs-6: 1rem;
+    --fs-7: 0.875rem;
+    --fs-8: 0.75rem;
+    --fs-9: 0.625rem;
+
+    --rounded-1: 1px;
+    --rounded-2: 2px;
+    --rounded-3: 3px;
+    --rounded-4: 4px;
+    --rounded-5: 5px;
+    --rounded-6: 6px;
+    --rounded-7: 7px;
+    --rounded-8: 8px;
+    --rounded-9: 9px;
+    --rounded-10: 10px;
+
+    --fw-1: 300;
+    --fw-2: 400;
+    --fw-3: 500;
+    --fw-4: 600;
+    --fw-5: 700;
+    --fw-6: 800;
+}
+
+.fs {
+    &-1 {
+        font-size: var(--fs-1);
+    }
+    &-2 {
+        font-size: var(--fs-2);
+    }
+    &-3 {
+        font-size: var(--fs-3);
+    }
+    &-4 {
+        font-size: var(--fs-4);
+    }
+    &-5 {
+        font-size: var(--fs-5);
+    }
+    &-6 {
+        font-size: var(--fs-6);
+    }
+    &-7 {
+        font-size: var(--fs-7);
+    }
+    &-8 {
+        font-size: var(--fs-8);
+    }
+    &-9 {
+        font-size: var(--fs-9);
+    }
+}
+
+.fw {
+    &-1 {
+        font-weight: var(--fw-1);
+    }
+    &-2 {
+        font-weight: var(--fw-2);
+    }
+    &-3 {
+        font-weight: var(--fw-3);
+    }
+    &-4 {
+        font-weight: var(--fw-4);
+    }
+    &-5 {
+        font-weight: var(--fw-5);
+    }
+    &-6 {
+        font-weight: var(--fw-6);
+    }
+}
+
+.color {
+    &-1 {
+        color: var(--color-1) !important;
+    }
+    &-2 {
+        color: var(--color-2) !important;
+    }
+    &-3 {
+        color: var(--color-3) !important;
+    }
+    &-4 {
+        color: var(--color-4) !important;
+    }
+    &-5 {
+        color: var(--color-5) !important;
+    }
+    &-6 {
+        color: var(--color-6) !important;
+    }
+    &-7 {
+        color: var(--color-7) !important;
+    }
+    &-8 {
+        color: var(--color-8) !important;
+    }
+    &-9 {
+        color: var(--color-9) !important;
+    }
+    &-10 {
+        color: var(--color-10) !important;
+    }
+    &-11 {
+        color: var(--color-11) !important;
+    }
+    &-12 {
+        color: var(--color-12) !important;
+    }
+    &-13 {
+        color: var(--color-13) !important;
+    }
+    &-14 {
+        color: var(--color-14) !important;
+    }
+}
+
+.bg-color {
+    &-1 {
+        background-color: var(--color-1) !important;
+    }
+    &-2 {
+        background-color: var(--color-2) !important;
+    }
+    &-3 {
+        background-color: var(--color-3) !important;
+    }
+    &-4 {
+        background-color: var(--color-4) !important;
+    }
+    &-5 {
+        background-color: var(--color-5) !important;
+    }
+    &-6 {
+        background-color: var(--color-6) !important;
+    }
+    &-7 {
+        background-color: var(--color-7) !important;
+    }
+    &-8 {
+        background-color: var(--color-8) !important;
+    }
+    &-9 {
+        background-color: var(--color-9) !important;
+    }
+    &-10 {
+        background-color: var(--color-10) !important;
+    }
+    &-11 {
+        background-color: var(--color-11) !important;
+    }
+    &-12 {
+        background-color: var(--color-12) !important;
+    }
+    &-13 {
+        background-color: var(--color-13) !important;
+    }
+    &-14 {
+        background-color: var(--color-14) !important;
+    }
+}
+
+.border-color {
+    &-1 {
+        border-color: var(--color-1) !important;
+    }
+    &-2 {
+        border-color: var(--color-2) !important;
+    }
+    &-3 {
+        border-color: var(--color-3) !important;
+    }
+    &-4 {
+        border-color: var(--color-4) !important;
+    }
+    &-5 {
+        border-color: var(--color-5) !important;
+    }
+    &-6 {
+        border-color: var(--color-6) !important;
+    }
+    &-7 {
+        border-color: var(--color-7) !important;
+    }
+    &-8 {
+        border-color: var(--color-8) !important;
+    }
+    &-9 {
+        border-color: var(--color-9) !important;
+    }
+    &-10 {
+        border-color: var(--color-10) !important;
+    }
+    &-11 {
+        border-color: var(--color-11) !important;
+    }
+    &-12 {
+        border-color: var(--color-12) !important;
+    }
+    &-13 {
+        border-color: var(--color-13) !important;
+    }
+    &-14 {
+        border-color: var(--color-14) !important;
+    }
+}
+
+.rounded {
+    &-1 {
+        border-radius: var(--rounded-1) !important;
+    }
+    &-2 {
+        border-radius: var(--rounded-2) !important;
+    }
+    &-3 {
+        border-radius: var(--rounded-3) !important;
+    }
+    &-4 {
+        border-radius: var(--rounded-4) !important;
+    }
+    &-5 {
+        border-radius: var(--rounded-5) !important;
+    }
+    &-6 {
+        border-radius: var(--rounded-6) !important;
+    }
+    &-7 {
+        border-radius: var(--rounded-7) !important;
+    }
+    &-8 {
+        border-radius: var(--rounded-8) !important;
+    }
+    &-9 {
+        border-radius: var(--rounded-9) !important;
+    }
+    &-10 {
+        border-radius: var(--rounded-10) !important;
+    }
+}
+h1 {
+    &.title {
+        color: var(--color-1);
+        font-size: var(--fs-1);
+    }
+}
+h2 {
+    &.title {
+        color: var(--color-1);
+        font-size: var(--fs-1);
+    }
+}
+h3 {
+    &.title {
+        color: var(--color-1);
+        font-size: var(--fs-1);
+    }
+}
+h4 {
+    &.title {
+        color: var(--color-1);
+        font-size: var(--fs-1);
+    }
+}
+h5 {
+    &.title {
+        color: var(--color-1);
+        font-size: var(--fs-1);
+    }
+}
+h6 {
+    &.title {
+        color: var(--color-1);
+        font-size: var(--fs-1);
+    }
+}
+
+.btn {
+    &--color-1 {
+        background-color: var(--color-1);
+        color: white;
+        border-color: var(--color-1);
+        &:hover {
+            background-color: var(--color-2);
+            color: white;
+            border-color: var(--color-2);
+        }
+        &.active {
+            background-color: var(--color-1);
+            color: var(--color-2);
+            border-color: var(--color-1);
+        }
+    }
+}
+.btn {
+    &--color-2 {
+        background-color: var(--color-2);
+        color: white;
+        border-color: var(--color-2);
+        &:hover {
+            background-color: var(--color-1);
+            color: white;
+            border-color: var(--color-1);
+        }
+        &.active {
+            background-color: var(--color-1);
+            color: white;
+            border-color: var(--color-1);
+        }
+    }
+}
+.img-hover-zoom {
+    overflow: hidden;
+}
+.img-hover-zoom img {
+    transition: transform .5s ease;
+}
+.img-hover-zoom:hover img {
+    transform: scale(1.5);
+}
+.under-line:after {
+    background-color: var(--color-1);
+    content: " ";
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 100px;
+    bottom: -8px;
+}
+.button--hover:hover{
+    background-color: var(--color-1);
+    color: white;
+}
+.text--hover-uppercase:hover{
+    text-transform: uppercase;
+}
+.synopsis{
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.page-link:hover{
+    background-color: var(--bs-pagination-active-bg) !important;
+    border-color: var(--bs-pagination-active-border-color) !important;
+    color: var(--bs-pagination-active-color) !important;
+}
+.item--hover:hover{
+    border-color: black !important;
+}
+.text--hover-color:hover{
+    color: #DD352E !important;
+    font-size: var(--fw-4) !important;
+}
+.progress{
+    height: 3px !important ;
+}
+.start-25{
+    left: 25%;
+}
+.start-50{
+    left: 50%;
+}
+.start-75{
+    left: 75%;
+}
+.cart_quantity_product{
+    width: 80px !important;
+}
